@@ -1,21 +1,104 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div>
+  <img src="../assets/Infrrd.PNG" class="logo">
+  <div class="team-filter">
+    <select aria-placeholder="Choose Team" (change)='teamFilter($event)'>
+      <option  value=''>Choose Team</option>
+      <option *ngFor='let team of teams'>{{team}}</option>
+    </select><i class="fas fa-users"></i>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="wrapper">
+  <div class="sidebar">
+    <nav>
+      <ul>
+        <li><a href='#'><i class="fas fa-table"></i>Overview</a></li>
+        <li><a href='#'><i class="fas fa-envelope"></i>Messages</a></li>
+        <li><a href='#' role="button" (click)="openSearchSliderfunc()"><i class="fas fa-search"></i>Search</a></li>
+        <li><a href='#'><i class="fas fa-sort-amount-up-alt"></i>Filter</a></li>
+        <li><a href='#'><i class="fas fa-history"></i>History</a></li>
+      </ul>
+    </nav>
+    <div class="botton-menus">
+      <ul>
+        <li><a href='#'><i class="fas fa-comments"></i>Get Help</a></li>
+        <li><a href='#'><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="this.openSearchSlider" class="search_slider">
+    <form #filterEmployeeList="ngForm" (ngSubmit)='this.onclickSubmit(filterEmployeeList.value)' class="container">
+      <a role="button" (click)="hideSearchSlider()"><i class="fas fa-arrow-left"></i></a><br>
+      <label>Department:</label><br>
+      <select name='department' ngModel>
+        <option value=''>Select</option>
+        <option *ngFor='let department of departments'>{{department}}</option>
+      </select>
+      <label>Roll Type:</label><br>
+      <select name='role' ngModel>
+        <option value=''>Select</option>
+        <option *ngFor='let role of roleType'>{{role}}</option>
+      </select>
+      <label>Designation:</label><br>
+      <select name='designation' ngModel>
+        <option value=''>Select</option>
+        <option *ngFor='let designation of position'>{{designation}}</option>
+      </select>
+      <label>Experience:</label><br>
+      <select name='experience' ngModel>
+        <option value=''>Select</option>
+        <option *ngFor='let exp of experience'>{{exp}}</option>
+      </select>
+      <label>Years of Joining:</label><br>
+      <select name='year' ngModel>
+        <option value=''>Select</option>
+        <option *ngFor='let year of yearOfJoining'>{{year}}</option>
+      </select>
+      <label>Location:</label><br>
+      <select name='location' ngModel>
+        <option value=''>Select</option>
+        <option *ngFor='let location of locations'>{{location}}</option>
+      </select>
+      <label>Team:</label><br>
+      <select name='team' ngModel>
+        <option value=''>Select</option>
+        <option *ngFor='let team of teams'>{{team}}</option>
+      </select><br>
+      <input type="reset" (click)='this.resetFunc()'>
+      <input type="submit" value="submit">
+    </form>
+  </div>
+  <div class="main_content">
+    <div class="info">
+      <div class="location-filter">
+        <label>Show Only Bangalore Employees</label>
+        <input type="checkbox" name="locationFilter" (change)='filterOnLocation($event)'>
+      </div>
+      <div *ngIf="this.filteredEmployeeList.length === 0">Sorry...!!! No Records found...</div>
+    </div>
+    <div class="content">
+      <div *ngFor='let employee of filteredEmployeeList' class="floatybox">
+        <img class="employee_image" [src]='employee.image' alt="Avatar">
+        <label><strong>{{employee.name}}</strong></label><br>
+        <label>{{employee.designation}}</label><br>
+        <label><strong>Rating:</strong></label>
+        <div class="rating">
+      <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+      <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+      <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+      <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+      <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+        </div>
+        <br>
+        <label><strong>Experience: </strong>{{employee.experience}} <strong>Date of Joining: </strong>
+          {{employee.dateOfJoining}}</label><br>
+        <label><strong>Current Team:</strong> {{employee.team}}</label><br>
+        <label><strong>Reporting Manager:</strong> {{employee.reportingManager}}</label><br>
+        <img class="image_icons" src="../assets/phone.png" alt="Avatar"><span>{{employee.phoneNumber}}</span>
+        <img class="image_icons" src="../assets/email.png" alt="Avatar"><span>{{employee.email}}</span>
+  
+      </div>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

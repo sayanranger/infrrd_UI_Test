@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EmployeesData } from './employeeData/employees-data';
+import { EmployeeServiceService } from './employeeService/employee-service.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,9 +13,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule
   ],
-  providers: [],
+  providers: [EmployeesData, EmployeeServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

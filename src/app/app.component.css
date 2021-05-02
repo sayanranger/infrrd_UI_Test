@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  background: #f3f5f9;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+}
+
+.wrapper .sidebar {
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  background: rgb(228, 238, 226);
+  padding: 30px 0;
+}
+
+.wrapper .sidebar ul li {
+  padding: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(225, 225, 225, 0.05);
+}
+
+.wrapper .sidebar ul li a {
+  color: #bdb8d7;
+  display: block;
+}
+
+.wrapper .sidebar ul li a .fas {
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover {
+  background: #598d59;
+}
+
+.search_slider {
+  width: 100px;
+  margin-left: 200px;
+  padding-left: 20px;
+}
+
+.info {
+  background-color: rgb(218, 235, 202);
+  height: 50px;
+  width: 100%;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 250px;
+  height: 100%;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+input[type=submit] {
+  margin-top: 20px;
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=reset] {
+  margin-top: 20px;
+  background-color: #c5cecb;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.main_content {
+  width: 100%;
+  margin-left: 200px;
+}
+
+.rating {
+  border: none;
+  float: right;
+  margin-top: -5px;
+}
+
+.rating>input {
+  display: none;
+}
+
+.rating>label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating>.half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating>label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating>input:checked~label,
+/* show gold star when clicked */
+.rating:not(:checked)>label:hover,
+/* hover current star */
+.rating:not(:checked)>label:hover~label {
+  color: #FFD700;
+}
+
+/* hover previous stars in list */
+
+.rating>input:checked+label:hover,
+/* hover current star when changing rating */
+.rating>input:checked~label:hover,
+.rating>label:hover~input:checked~label,
+/* lighten current selection */
+.rating>input:checked~label:hover~label {
+  color: #FFED85;
+}
+
+.location-filter {
+  float: right;
+}
+
+.team-filter {
+  width: 300px;
+  float: right;
+  margin-top: 40px;
+}
+
+.logo {
+  width: 200px;
+  height: 100px;
+}
+
+.employee_image {
+  border-radius: 50%;
+  width: 70px;
+  display: flexbox;
+}
+
+.content {
+  background-color: rgb(212, 209, 209);
+  width: 100%;
+}
+
+
+.floatybox {
+  display: inline-block;
+  width: 350px;
+  height: 400px;
+  min-height: 100px;
+  padding: 20px;
+  margin-right: 0;
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 10px 20px rgba(21, 80, 9, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.image_icons {
+  width: 20px;
+  padding-right: 5px;
+
+}
+
+span {
+  font-size: small;
+  padding-right: 5px;
+}
