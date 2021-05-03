@@ -113,6 +113,20 @@ export class EmployeesData {
             reportingManager: 'Mahendra Verma',
             phoneNumber: 87091232209,
             email: 'rohan.verma@infrrd.com'
+        },
+        {
+            image: '../assets/Ron.PNG',
+            name: 'Ron Vlarr',
+            designation: 'Business Analyst',
+            department: 'Business',
+            role: 'Full-Time',
+            rating: 5,
+            experience: 2,
+            dateOfJoining: 2017,
+            team: 'IBD',
+            reportingManager: 'Nitish Rana',
+            phoneNumber: 87091232129,
+            email: 'ron.vlarr@infrrd.com'
         }
     ];
     public department: String[] = [
@@ -143,7 +157,7 @@ export class EmployeesData {
         'Singapore'
     ];
     public team: String[] = [
-        'OCBC Bangalore',
-        'OCBC Singapore'
+        'OCBC',
+        'IBD'
     ]
 }

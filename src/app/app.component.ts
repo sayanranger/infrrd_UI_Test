@@ -9,6 +9,8 @@ import { EmployeeServiceService } from './employeeService/employee-service.servi
 export class AppComponent {
   constructor(private employeeData: EmployeeServiceService){}
   title = 'my-portal';
+  isChecked: Boolean;
+  public teamFilterCheck: String;
   public openSearchSlider = false;
   public valueHolder = {};
   public star = [1, 2, 3, 4, 5];
@@ -38,7 +40,7 @@ export class AppComponent {
       (el.experience == formValue.experience || formValue.experience == '' || formValue.experience == null) &&
       (el.dateOfJoining == formValue.year || formValue.year == '' || formValue.year == null) &&
       (el.team.includes(formValue.location) || formValue.location == '' || formValue.location == null) &&
-      (el.team == formValue.team  || formValue.team == '' || formValue.team == null);
+      (el.team.includes(formValue.team)  || formValue.team == '' || formValue.team == null);
     });
     this.tempArr = this.filteredEmployeeList;
   }
@@ -52,13 +54,20 @@ export class AppComponent {
     }
   }
   teamFilter(e){
-    // this.tempArr = this.filteredEmployeeList;
     this.filteredEmployeeList = this.tempArr;
-    if (e.target.value !== '') {
+    if (e.target.value === '') {
+      this.tempArr = this.filteredEmployeeList;
+      this.isChecked = false;
+    }
+    if (e.target.value !== '' && this.isChecked) {
       this.filteredEmployeeList = this.filteredEmployeeList.filter(function(el){
-        return (el.team == e.target.value);
+        return (el.team.includes(e.target.value) && el.team.includes('Bangalore'));
       });
-    } else {
+    } else if(e.target.value !== '' && !this.isChecked) {
+      this.filteredEmployeeList = this.filteredEmployeeList.filter(function(el){
+        return (el.team.includes(e.target.value));
+      });
+    }else {
       this.filteredEmployeeList = this.tempArr;
     }
   }

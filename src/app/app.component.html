@@ -71,7 +71,7 @@
     <div class="info">
       <div class="location-filter">
         <label>Show Only Bangalore Employees</label>
-        <input type="checkbox" name="locationFilter" (change)='filterOnLocation($event)'>
+        <input type="checkbox" name="locationFilter" (change)='filterOnLocation($event)' [(ngModel)]='isChecked'>
       </div>
       <div *ngIf="this.filteredEmployeeList.length === 0">Sorry...!!! No Records found...</div>
     </div>
