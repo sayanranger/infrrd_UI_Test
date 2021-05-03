@@ -10,7 +10,7 @@ export class AppComponent {
   constructor(private employeeData: EmployeeServiceService){}
   title = 'my-portal';
   isChecked: Boolean;
-  public teamFilterCheck: String;
+  public teamFilterCheck: String = '';
   public openSearchSlider = false;
   public valueHolder = {};
   public star = [1, 2, 3, 4, 5];
@@ -30,6 +30,7 @@ export class AppComponent {
   hideSearchSlider(){
     this.openSearchSlider = false;
     this.filteredEmployeeList = this.employeesList;
+    this.tempArr = this.filteredEmployeeList;
   }
   onclickSubmit(formValue) {
     this.filteredEmployeeList = this.employeesList;
@@ -42,6 +43,11 @@ export class AppComponent {
       (el.team.includes(formValue.location) || formValue.location == '' || formValue.location == null) &&
       (el.team.includes(formValue.team)  || formValue.team == '' || formValue.team == null);
     });
+    if (this.isChecked) {
+      this.filteredEmployeeList = this.filteredEmployeeList.filter(function(el) {
+        return (el.team.includes('Bangalore'));
+      });
+    }
     this.tempArr = this.filteredEmployeeList;
   }
   filterOnLocation(e){
@@ -54,6 +60,7 @@ export class AppComponent {
     }
   }
   teamFilter(e){
+    this.teamFilterCheck = e.target.value;
     this.filteredEmployeeList = this.tempArr;
     if (e.target.value === '') {
       this.tempArr = this.filteredEmployeeList;
